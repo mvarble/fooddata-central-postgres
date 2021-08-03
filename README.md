@@ -7,7 +7,7 @@ The purpose of this repository is to continue the *free and open source* spirit 
 
 ## Install
 
-Note that `download.sh` simply uses `wget`, `unzip`, and `set` to put all the CSV files into the local filesystem.
+Note that `download.sh` simply uses `wget`, `unzip`, and `sed` to put all the CSV files into the local filesystem.
 This can easily be done by hand, but the script is convenient.
 
 ```
