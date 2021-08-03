@@ -7,7 +7,7 @@ The purpose of this repository is to continue the *free and open source* spirit 
 
 ## Install
 
-Note that `download.sh` simply uses `wget` and `unzip` to put all the CSV files into the local filesystem.
+Note that `download.sh` simply uses `wget`, `unzip`, and `set` to put all the CSV files into the local filesystem.
 This can easily be done by hand, but the script is convenient.
 
 ```
@@ -18,7 +18,7 @@ chmod +x ./download.sh
 On Ubuntu, the required commands can be downloaded easily.
 
 ```
-apt-get install wget unzip
+apt-get install wget unzip sed
 ```
 
 Once the CSV files are in the directory `FoodData_Central`, we can populate the Postgres database by running the PostgreSQL transactions in the file `setup.sql`.
