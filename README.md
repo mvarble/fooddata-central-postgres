@@ -1,7 +1,7 @@
 # FoodData Central Postgres
 
 [FoodData Central](https://fdc.nal.usda.gov/index.html) is an amazing service provided by the U.S. Department of Agriculture, hosting nutritional and agricultural information for massive amounts of branded and foundational foods.
-They provide a convenient REST API for querying foods and downloading the raw data.
+They provide a convenient REST API for querying foods and also allow us to download the raw data.
 The data is available for download as either several CSV files or a Microsoft Access database.
 The purpose of this repository is to continue the *free and open source* spirit that FoodData Central encourages by providing simple scripts which migrate the data to a Postgres database, as opposed to the proprietary Microsoft Access format. 🤢
 
