@@ -48,7 +48,7 @@ CREATE TABLE fndds_ingredient_nutrient_value(
   ingredient_code INT NOT NULL,
   sr_description VARCHAR(255),
   nutrient_code INT NOT NULL,
-  nutrient_value FLOAT NOT NULL,
+  nutrient_value REAL NOT NULL,
   nutrient_value_source VARCHAR(255),
   derivation_code VARCHAR(4),
   sr_addmod_year VARCHAR(255),
@@ -95,7 +95,7 @@ CREATE TABLE food_component(
   name VARCHAR(255),
   pct_weight VARCHAR(15),
   is_refuse VARCHAR(1),
-  gram_weight FLOAT NOT NULL,
+  gram_weight REAL NOT NULL,
   data_points INT NOT NULL,
   min_year_acquired VARCHAR(5)
 );
@@ -120,7 +120,7 @@ CREATE TABLE food_nutrient(
   id INT PRIMARY KEY,
   fdc_id INT NOT NULL,
   nutrient_id INT NOT NULL,
-  amount FLOAT NOT NULL,
+  amount REAL NOT NULL,
   data_points VARCHAR(255),
   derivation_id VARCHAR(255),
   min VARCHAR(255),
@@ -150,11 +150,11 @@ CREATE TABLE food_portion(
   id INT PRIMARY KEY,
   fdc_id INT NOT NULL,
   seq_num VARCHAR(5),
-  amount FLOAT NOT NULL,
+  amount REAL NOT NULL,
   measure_unit_id INT NOT NULL,
   portion_description VARCHAR(255),
   modifier VARCHAR(255),
-  gram_weight FLOAT NOT NULL,
+  gram_weight REAL NOT NULL,
   data_points VARCHAR(7),
   footnote VARCHAR(255),
   min_year_acquired VARCHAR(255)
@@ -163,7 +163,7 @@ CREATE TABLE food_portion(
 -- food_protein_conversion_factor
 CREATE TABLE food_protein_conversion_factor(
   food_nutrient_conversion_factor_id INT PRIMARY KEY,
-  value FLOAT NOT NULL
+  value REAL NOT NULL
 );
 
 -- food_update_log_entry
