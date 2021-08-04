@@ -17,7 +17,7 @@ ALTER TABLE agricultural_samples
 
 -- branded_food
 ALTER TABLE branded_food 
-  ALTER COLUMN serving_size TYPE FLOAT USING NULLIF(serving_size, '')::FLOAT,
+  ALTER COLUMN serving_size TYPE REAL USING NULLIF(serving_size, '')::REAL,
   ALTER COLUMN modified_date TYPE DATE USING NULLIF(modified_date, '')::DATE,
   ALTER COLUMN available_date TYPE DATE USING NULLIF(available_date, '')::DATE,
   ALTER COLUMN discontinued_date TYPE DATE USING NULLIF(discontinued_date, '')::DATE,
@@ -54,22 +54,22 @@ ALTER TABLE food_attribute
 
 -- food_calorie_conversion_factor
 ALTER TABLE food_calorie_conversion_factor 
-  ALTER COLUMN protein_value TYPE FLOAT USING (
+  ALTER COLUMN protein_value TYPE REAL USING (
     CASE 
       WHEN protein_value='' THEN 0.0
-      ELSE protein_value::FLOAT
+      ELSE protein_value::REAL
     END
   ),
-  ALTER COLUMN fat_value TYPE FLOAT USING (
+  ALTER COLUMN fat_value TYPE REAL USING (
     CASE 
       WHEN fat_value='' THEN 0.0
-      ELSE fat_value::FLOAT
+      ELSE fat_value::REAL
     END
   ),
-  ALTER COLUMN carbohydrate_value TYPE FLOAT USING (
+  ALTER COLUMN carbohydrate_value TYPE REAL USING (
     CASE 
       WHEN carbohydrate_value='' THEN 0.0
-      ELSE carbohydrate_value::FLOAT
+      ELSE carbohydrate_value::REAL
     END
   );
 
@@ -78,7 +78,7 @@ ALTER TABLE food_calorie_conversion_factor
 
 -- food_component
 ALTER TABLE food_component
-  ALTER COLUMN pct_weight TYPE FLOAT USING NULLIF(pct_weight, '')::FLOAT,
+  ALTER COLUMN pct_weight TYPE REAL USING NULLIF(pct_weight, '')::REAL,
   ALTER COLUMN is_refuse TYPE BOOLEAN USING (
     CASE
       WHEN is_refuse='Y' THEN TRUE
@@ -107,15 +107,15 @@ DELETE FROM food_nutrient WHERE fdc_id BETWEEN 1104805 AND 1104809;
 ALTER TABLE food_nutrient
   ALTER COLUMN data_points TYPE INT USING NULLIF(data_points, '')::INT,
   ALTER COLUMN derivation_id TYPE INT USING NULLIF(derivation_id, '')::INT,
-  ALTER COLUMN min TYPE FLOAT USING NULLIF(min, '')::FLOAT,
-  ALTER COLUMN max TYPE FLOAT USING NULLIF(max, '')::FLOAT,
-  ALTER COLUMN median TYPE FLOAT USING NULLIF(median, '')::FLOAT,
+  ALTER COLUMN min TYPE REAL USING NULLIF(min, '')::REAL,
+  ALTER COLUMN max TYPE REAL USING NULLIF(max, '')::REAL,
+  ALTER COLUMN median TYPE REAL USING NULLIF(median, '')::REAL,
   ALTER COLUMN min_year_acquired TYPE INT USING NULLIF(min_year_acquired, '')::INT,
   ADD COLUMN nutrient_id_nid INT,
-  ADD COLUMN nutrient_id_nnbr FLOAT;
+  ADD COLUMN nutrient_id_nnbr REAL;
 
 ALTER TABLE nutrient -- must pre-alter `nutrient` to get keys to work
-  ALTER COLUMN nutrient_nbr TYPE FLOAT USING NULLIF(nutrient_nbr, '')::FLOAT,
+  ALTER COLUMN nutrient_nbr TYPE REAL USING NULLIF(nutrient_nbr, '')::REAL,
   ADD CONSTRAINT unique_nutrient_nbr UNIQUE (nutrient_nbr);
 
 UPDATE food_nutrient SET nutrient_id_nid=nutrient_id 
@@ -174,7 +174,7 @@ ALTER TABLE input_food
   DROP COLUMN retention_code,
   DROP COLUMN survey_flag,
   ALTER COLUMN seq_num TYPE INT USING NULLIF(seq_num, '')::INT,
-  ALTER COLUMN amount TYPE FLOAT USING NULLIF(amount, '')::FLOAT,
+  ALTER COLUMN amount TYPE REAL USING NULLIF(amount, '')::REAL,
   ADD CONSTRAINT input_food_fdc_id_fk
     FOREIGN KEY (fdc_id) REFERENCES food(fdc_id),
   ADD CONSTRAINT input_food_fdc_of_input_food_fk
@@ -198,7 +198,7 @@ ALTER TABLE lab_method_nutrient
 -- market_acquisition
 ALTER TABLE market_acquisition
   ALTER COLUMN expiration_date TYPE DATE USING NULLIF(expiration_date, '')::DATE,
-  ALTER COLUMN label_weight TYPE FLOAT USING NULLIF(label_weight, '')::FLOAT,
+  ALTER COLUMN label_weight TYPE REAL USING NULLIF(label_weight, '')::REAL,
   ALTER COLUMN acquisition_date TYPE DATE USING NULLIF(acquisition_date, '')::DATE,
   ALTER COLUMN sell_by_date TYPE DATE USING NULLIF(sell_by_date, '')::DATE;
 
@@ -237,7 +237,7 @@ ALTER TABLE sub_sample_food
 -- sub_sample_result
 DELETE FROM sub_sample_result WHERE food_nutrient_id BETWEEN 13336250 AND 13336266;
 ALTER TABLE sub_sample_result
-  ALTER COLUMN adjusted_amount TYPE FLOAT USING NULLIF(adjusted_amount, '')::FLOAT,
+  ALTER COLUMN adjusted_amount TYPE REAL USING NULLIF(adjusted_amount, '')::REAL,
   ADD CONSTRAINT sub_sample_result_food_nutrient_id_fk
     FOREIGN KEY (food_nutrient_id) REFERENCES food_nutrient(id),
   ADD CONSTRAINT sub_sample_result_lab_method_id_fk
